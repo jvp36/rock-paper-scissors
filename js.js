@@ -63,6 +63,16 @@ const playRound = function (humanChoice, computerChoice) {
     }
 }
 
-console.log(playRound());
-console.log("You won:", humanScore);
-console.log("You lost:", computerScore);
+// play game function
+
+const playGame = function () {
+    let game = 1
+    while (game < 6) {
+        console.log(`Game ${game}: ${playRound()}`);
+        game ++;
+    }    
+}
+playGame();
+console.log(`You won: ${humanScore}`);
+console.log(`You lost: ${computerScore}`);
+console.log(`You tied: ${Math.abs(5 - (humanScore + computerScore))}`);
