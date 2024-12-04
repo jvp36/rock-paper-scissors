@@ -1,4 +1,11 @@
 // variables
+const $rock = document.getElementById("rock");
+const $paper = document.getElementById("paper");
+const $scissors = document.getElementById("scissors");
+
+console.log($rock);
+console.log($paper);
+console.log($scissors);
 
 let humanScore = 0;
 let computerScore = 0;
@@ -25,9 +32,11 @@ const getHumanChoice = function () {
     }    
 }
 
+
+
 // play round function
 
-const playRound = function (humanChoice, computerChoice) {
+const playRound = (humanChoice, computerChoice) => {
     computerChoice = getComputerChoice();
     humanChoice = getHumanChoice();
     if (humanChoice === "rock") {
@@ -63,8 +72,16 @@ const playRound = function (humanChoice, computerChoice) {
     }
 }
 
+// Events
+
+$rock.addEventListener("click", playRound);
+$paper.addEventListener("click", () => console.log("PAPER"));
+$scissors.addEventListener("click", () => console.log("SCISSORS"));
+
+
 // play game function
 
+/*
 const playGame = function () {
     let game = 1
     while (game < 6) {
@@ -73,6 +90,7 @@ const playGame = function () {
     }    
 }
 playGame();
+*/
 console.log(`You won: ${humanScore}`);
 console.log(`You lost: ${computerScore}`);
 console.log(`You tied: ${Math.abs(5 - (humanScore + computerScore))}`);
