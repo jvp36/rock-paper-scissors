@@ -80,7 +80,7 @@ $rock.addEventListener("click", () => {
     $list.appendChild($round);
     $roundBtn.addEventListener("click", () => {
         $resume = document.createElement("h2");
-        $resume.textContent = `You won ${humanScore} raunds, you lost ${computerScore} and ${game -(humanScore + computerScore)} tied.`
+        $resume.textContent = `You won ${humanScore}, you lost ${computerScore} and ${game -(humanScore + computerScore)} tied.`
         $resultContainer.appendChild($resume); 
     })   
 });
@@ -96,7 +96,7 @@ $paper.addEventListener("click", () => {
     $list.appendChild($round);
     $roundBtn.addEventListener("click", () => {
         $resume = document.createElement("h2");
-        $resume.textContent = `You won ${humanScore} raunds, you lost ${computerScore} and ${game -(humanScore + computerScore)} tied.`
+        $resume.textContent = `You won ${humanScore}, you lost ${computerScore} and ${game -(humanScore + computerScore)} tied.`
         $resultContainer.appendChild($resume); 
     })
 });
@@ -112,7 +112,7 @@ $scissors.addEventListener("click", () => {
     $list.appendChild($round);
     $roundBtn.addEventListener("click", () => {
         $resume = document.createElement("h2");
-        $resume.textContent = `You won ${humanScore} raunds, you lost ${computerScore} and ${game -(humanScore + computerScore)} tied.`
+        $resume.textContent = `You won ${humanScore}, you lost ${computerScore} and ${game -(humanScore + computerScore)} tied.`
         $resultContainer.appendChild($resume); 
     })    
 });
