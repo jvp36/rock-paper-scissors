@@ -1,10 +1,12 @@
 // variables
 const $body = document.getElementById("body"); 
-const $resultContainer = document.createElement("div");
+const $buttons = document.getElementById("buttons");
 const $list = document.createElement("ul");
 const $rock = document.getElementById("rock");
 const $paper = document.getElementById("paper");
 const $scissors = document.getElementById("scissors");
+const $resultContainer = document.createElement("div");
+
 
 let humanScore = 0;
 let computerScore = 0;
@@ -36,33 +38,33 @@ const playRound = (playerSelection, computerSelection) => {
         
     if (playerSelection === "rock") {
         if (computerSelection === "rock") {
-            return "You chose rock. Computer chose rock. This round is tied!"
+            return `You chose rock. Computer chose rock. This round is tied! ${humanScore} - ${computerScore}`
         } else if (computerSelection === "paper") {
             computerScore += 1;
-            return "You chose rock. Computer chose paper. You lost! Paper beats rock."
+            return `You chose rock. Computer chose paper. You lost! Paper beats rock. ${humanScore} - ${computerScore} `
         } else {
             humanScore += 1;
-            return "You chose rock. Computer chose scissors. You won! Rock beats scissors."
+            return `You chose rock. Computer chose scissors. You won! Rock beats scissors. ${humanScore} - ${computerScore}`
         }
     } else if (playerSelection === "paper") {
         if (computerSelection === "rock") {
             humanScore += 1;
-            return "You chose paper. Computer chose rock. You won! Paper beats rock."
+            return `You chose paper. Computer chose rock. You won! Paper beats rock. ${humanScore} - ${computerScore}`
         } else if (computerSelection === "paper") {
-            return "You chose paper. Computer chose paper. This round is tied!"
+            return `You chose paper. Computer chose paper. This round is tied! ${humanScore} - ${computerScore}`
         } else {
             computerScore += 1;
-            return "You chose paper. Computer chose scissors. You lost! Scissors beats paper."
+            return `You chose paper. Computer chose scissors. You lost! Scissors beats paper. ${humanScore} - ${computerScore}`
         }
     } else {
         if (computerSelection === "rock") {
             computerScore += 1;
-            return "You chose scissors. Computer chose rock. You lost! Rock beats scissors."
+            return `You chose scissors. Computer chose rock. You lost! Rock beats scissors. ${humanScore} - ${computerScore}`
         } else if (computerSelection === "paper") {
             humanScore += 1;
-            return "You chose scissors. Computer chose paper. You won! Scissors beats paper."
+            return `You chose scissors. Computer chose paper. You won! Scissors beats paper. ${humanScore} - ${computerScore}`
         } else {
-            return "You chose scissors. Computer chose scissors. This round is tied!"
+            return `You chose scissors. Computer chose scissors. This round is tied! ${humanScore} - ${computerScore}`
         }
     }
 }
@@ -70,51 +72,89 @@ const playRound = (playerSelection, computerSelection) => {
 // Events
 $rock.addEventListener("click", () => {
     game += 1;
-    $round = document.createElement("li");
-    $roundBtn = document.createElement("button");
-    $roundBtn.textContent = "Stop game";    
+    $round = document.createElement("li");        
     let playerSelection = "rock";
     let computerSelection = getComputerChoice();
     $round.textContent = `Game ${game}: ${playRound(playerSelection, computerSelection)}`;
-    $round.appendChild($roundBtn);
     $list.appendChild($round);
-    $roundBtn.addEventListener("click", () => {
-        $resume = document.createElement("h2");
-        $resume.textContent = `You won ${humanScore}, you lost ${computerScore} and ${game -(humanScore + computerScore)} tied.`
-        $resultContainer.appendChild($resume); 
-    })   
+    if (humanScore === 5) {
+        const $newGameBtn = document.createElement("button");
+        $newGameBtn.textContent = "New Game" 
+        const $resume = document.createElement("h2");
+        $resume.textContent = `YOU WON! ${humanScore} - ${computerScore}.` 
+        $resultContainer.appendChild($resume);
+        $buttons.remove();
+        $resultContainer.appendChild($newGameBtn);
+        $newGameBtn.addEventListener("click", () => location.reload());
+    } else if (computerScore === 5) {
+        const $newGameBtn = document.createElement("button");
+        $newGameBtn.textContent = "New Game" 
+        const $resume = document.createElement("h2");
+        $resume.textContent = `YOU LOST! ${humanScore} - ${computerScore}.`
+        $resultContainer.appendChild($resume);
+        $buttons.remove();
+        $resultContainer.appendChild($newGameBtn);
+        $newGameBtn.addEventListener("click", () => location.reload());
+    }         
 });
 $paper.addEventListener("click", () => {
     game += 1;
     $round = document.createElement("li");
-    $roundBtn = document.createElement("button");
-    $roundBtn.textContent = "Stop game";    
+        
     let playerSelection = "paper";
     let computerSelection = getComputerChoice();
     $round.textContent = `Game ${game}: ${playRound(playerSelection, computerSelection)}`;
-    $round.appendChild($roundBtn);
-    $list.appendChild($round);
-    $roundBtn.addEventListener("click", () => {
-        $resume = document.createElement("h2");
-        $resume.textContent = `You won ${humanScore}, you lost ${computerScore} and ${game -(humanScore + computerScore)} tied.`
-        $resultContainer.appendChild($resume); 
-    })
+    $list.appendChild($round); 
+    if (humanScore === 5) {
+        const $newGameBtn = document.createElement("button");
+        $newGameBtn.textContent = "New Game" 
+        const $resume = document.createElement("h2");
+        $resume.textContent = `YOU WON! ${humanScore} - ${computerScore}.` 
+        $resultContainer.appendChild($resume);
+        $buttons.remove();
+        $resultContainer.appendChild($newGameBtn);
+        $newGameBtn.addEventListener("click", () => location.reload());
+    } else if (computerScore === 5) {
+        const $newGameBtn = document.createElement("button");
+        $newGameBtn.textContent = "New Game" 
+        const $resume = document.createElement("h2");
+        $resume.textContent = `YOU LOST! ${humanScore} - ${computerScore}.`
+        $resultContainer.appendChild($resume);
+        $buttons.remove();
+        $resultContainer.appendChild($newGameBtn);
+        $newGameBtn.addEventListener("click", () => location.reload());
+    }   
 });
 $scissors.addEventListener("click", () => {
     game += 1;
     $round = document.createElement("li");
-    $roundBtn = document.createElement("button");
-    $roundBtn.textContent = "Stop game";    
+        
     let playerSelection = "scissors";
     let computerSelection = getComputerChoice();
     $round.textContent = `Game ${game}: ${playRound(playerSelection, computerSelection)}`;
-    $round.appendChild($roundBtn);
-    $list.appendChild($round);
-    $roundBtn.addEventListener("click", () => {
-        $resume = document.createElement("h2");
-        $resume.textContent = `You won ${humanScore}, you lost ${computerScore} and ${game -(humanScore + computerScore)} tied.`
-        $resultContainer.appendChild($resume); 
-    })    
+    $list.appendChild($round); 
+    if (humanScore === 5) {
+        const $newGameBtn = document.createElement("button");
+        $newGameBtn.textContent = "New Game" 
+        const $resume = document.createElement("h2");
+        $resume.textContent = `YOU WON! ${humanScore} - ${computerScore}.` 
+        $resultContainer.appendChild($resume);
+        $buttons.remove();
+        $resultContainer.appendChild($newGameBtn);
+        $newGameBtn.addEventListener("click", () => location.reload());
+    } else if (computerScore === 5) {
+        const $newGameBtn = document.createElement("button");
+        $newGameBtn.textContent = "New Game" 
+        const $resume = document.createElement("h2");
+        $resume.textContent = `YOU LOST! ${humanScore} - ${computerScore}.`
+        $resultContainer.appendChild($resume);
+        $buttons.remove();
+        $resultContainer.appendChild($newGameBtn);
+        $newGameBtn.addEventListener("click", () => location.reload());
+    }        
 });
+
+
+
 
 
